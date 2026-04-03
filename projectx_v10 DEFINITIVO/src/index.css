@@ -1,0 +1,233 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=Inter:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 96%;
+
+    --card: 0 0% 0%;
+    --card-foreground: 0 0% 96%;
+
+    --popover: 0 0% 5%;
+    --popover-foreground: 0 0% 96%;
+
+    --primary: 43 56% 52%;
+    --primary-foreground: 0 0% 0%;
+
+    --secondary: 40 8% 75%;
+    --secondary-foreground: 0 0% 0%;
+
+    --muted: 0 0% 12%;
+    --muted-foreground: 40 8% 75%;
+
+    --accent: 43 56% 52%;
+    --accent-foreground: 0 0% 0%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 96%;
+
+    --border: 0 0% 100% / 0.07;
+    --input: 0 0% 100% / 0.1;
+    --ring: 43 56% 52%;
+
+    --radius: 0.75rem;
+
+    --gold: 43 72% 52%;
+    --gold-1: 48 90% 80%;
+    --gold-2: 43 72% 52%;
+    --gold-3: 36 86% 36%;
+    --gold-soft: 43 72% 52% / 0.35;
+
+    --panel: 0 0% 0% / 0.78;
+    --border-soft: 0 0% 100% / 0.07;
+    --shadow-deep: 0 28px 60px rgba(0, 0, 0, 0.85);
+
+    --font-display: 'Playfair Display', serif;
+    --font-body: 'Inter', sans-serif;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+    background-image: url('/images/background-marble.webp');
+    background-repeat: repeat;
+    background-color: hsl(0 0% 0%);
+  }
+
+  @media (min-width: 768px) {
+    body {
+      background-attachment: fixed;
+    }
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+  }
+}
+
+@layer components {
+  .glass-panel {
+    @apply backdrop-blur-xl border;
+    background: hsl(var(--panel));
+    border-color: hsl(var(--border-soft));
+    box-shadow: var(--shadow-deep);
+  }
+
+  .gold-gradient {
+    background: linear-gradient(135deg, hsl(var(--gold-1)), hsl(var(--gold-2)));
+  }
+
+  .gold-text {
+    background: linear-gradient(135deg, hsl(var(--gold-1)), hsl(var(--gold-2)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: 0.04em;
+  }
+
+  .gold-line {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, hsl(var(--gold-2)), transparent);
+  }
+
+  .gold-glow {
+    box-shadow: 0 0 24px hsl(var(--gold-soft));
+  }
+
+  .gold-glow-hover:hover {
+    box-shadow: 0 0 34px hsl(43 72% 52% / 0.55);
+  }
+
+  .text-gold {
+    color: hsl(var(--gold-2));
+  }
+
+  .animate-on-scroll {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+
+  .animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@layer utilities {
+  @keyframes float-arrow {
+    0%, 100% {
+      transform: translateY(0);
+      opacity: 0.6;
+    }
+    50% {
+      transform: translateY(10px);
+      opacity: 1;
+    }
+  }
+
+  @keyframes count-up {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes gold-shimmer {
+    0% {
+      background-position: -200% center;
+    }
+    100% {
+      background-position: 200% center;
+    }
+  }
+
+  .animate-float-arrow {
+    animation: float-arrow 2s ease-in-out infinite;
+  }
+
+  .animate-count-up {
+    animation: count-up 0.5s ease-out forwards;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-on-scroll,
+    .animate-float-arrow,
+    .animate-count-up {
+      animation: none !important;
+      transition: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }
+}
+
+/* ===== UTILITY AGGIUNTIVE ===== */
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+:focus-visible {
+  outline: 2px solid hsl(var(--gold-2));
+  outline-offset: 3px;
+}
+
+@media (max-width: 767px) {
+  input,
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+}
+
+/* text-muted-foreground usa la variabile --muted-foreground definita in :root */
+
+.footer-title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.footer-link {
+  font-size: 0.85rem;
+  color: #888;
+  transition: all 0.2s ease;
+}
+
+.footer-link:hover {
+  color: #d4af37;
+}
+
+.footer-icon {
+  color: #a3a3a3;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.footer-icon:hover {
+  color: #d4af37;
+  transform: scale(1.15);
+}

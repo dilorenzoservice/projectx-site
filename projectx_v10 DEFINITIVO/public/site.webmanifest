@@ -1,0 +1,24 @@
+{
+  "name": "ProjectX Italia",
+  "short_name": "ProjectX",
+  "description": "Busti artistici in resina effetto marmo. Personalizzazioni premium, modellazione digitale e finiture artigianali Made in Italy.",
+  "icons": [
+    {
+      "src": "/favicon/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/",
+  "scope": "/",
+  "theme_color": "#0A0A0A",
+  "background_color": "#0A0A0A",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "categories": ["art", "design", "sculpture", "3d-printing"]
+}
